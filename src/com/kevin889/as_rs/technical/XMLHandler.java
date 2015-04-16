@@ -1,4 +1,4 @@
-package com.kevin889.as_rs;
+package com.kevin889.as_rs.technical;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;

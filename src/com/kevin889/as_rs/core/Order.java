@@ -1,4 +1,4 @@
-package com.kevin889.as_rs;
+package com.kevin889.as_rs.core;
 
 import java.util.ArrayList;
 

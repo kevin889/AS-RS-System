@@ -1,4 +1,6 @@
-package com.kevin889.as_rs;
+package com.kevin889.as_rs.algoritme;
+
+import com.kevin889.as_rs.core.Order;
 
 /**
  * Created by kevin889 on 16-04-15.

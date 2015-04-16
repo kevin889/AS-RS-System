@@ -1,5 +1,8 @@
 package com.kevin889.as_rs;
 
+import com.kevin889.as_rs.technical.SQLHandler;
+import com.kevin889.as_rs.visual.TourScreen;
+
 import java.sql.SQLException;
 
 /**

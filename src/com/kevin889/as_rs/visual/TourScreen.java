@@ -1,5 +1,12 @@
-package com.kevin889.as_rs;
+package com.kevin889.as_rs.visual;
 
+import com.kevin889.as_rs.technical.SQLHandler;
+import com.kevin889.as_rs.technical.XMLFilter;
+import com.kevin889.as_rs.technical.XMLHandler;
+import com.kevin889.as_rs.algoritme.GA_TSP;
+import com.kevin889.as_rs.core.Customer;
+import com.kevin889.as_rs.core.Order;
+import com.kevin889.as_rs.core.Product;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

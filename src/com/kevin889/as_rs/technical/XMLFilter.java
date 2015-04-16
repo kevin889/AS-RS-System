@@ -1,4 +1,4 @@
-package com.kevin889.as_rs;
+package com.kevin889.as_rs.technical;
 
 import java.io.File;
 import javax.swing.*;

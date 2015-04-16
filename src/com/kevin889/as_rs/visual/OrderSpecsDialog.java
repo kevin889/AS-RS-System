@@ -1,4 +1,7 @@
-package com.kevin889.as_rs;
+package com.kevin889.as_rs.visual;
+
+import com.kevin889.as_rs.core.Customer;
+import com.kevin889.as_rs.core.Order;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
