@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.kevin889.as_rs</OriginalElement>
+  <nodes>
+    <node x="669.0" y="450.0">com.kevin889.as_rs.core.Order</node>
+    <node x="822.0" y="768.0">com.kevin889.as_rs.technical.SQLHandler.DatabaseOption</node>
+    <node x="264.0" y="768.0">com.kevin889.as_rs.technical.XMLHandler</node>
+    <node x="0.0" y="768.0">com.kevin889.as_rs.technical.XMLHandler.NodeOption</node>
+    <node x="608.0" y="998.0">com.kevin889.as_rs.Magazijn</node>
+    <node x="372.0" y="450.0">com.kevin889.as_rs.core.Product</node>
+    <node x="0.0" y="998.0">com.kevin889.as_rs.technical.XMLFilter</node>
+    <node x="0.0" y="450.0">com.kevin889.as_rs.core.Customer</node>
+    <node x="435.0" y="998.0">com.kevin889.as_rs.algoritme.GA_BPP</node>
+    <node x="820.0" y="998.0">com.kevin889.as_rs.visual.TourPanel</node>
+    <node x="262.0" y="998.0">com.kevin889.as_rs.algoritme.GA_TSP</node>
+    <node x="0.0" y="0.0">com.kevin889.as_rs.visual.TourScreen</node>
+    <node x="505.0" y="0.0">com.kevin889.as_rs.technical.SQLHandler</node>
+    <node x="553.0" y="768.0">com.kevin889.as_rs.visual.OrderSpecsDialog</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.technical.SQLHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.OrderSpecsDialog" target="com.kevin889.as_rs.core.Order">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.visual.OrderSpecsDialog">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.core.Order">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.Magazijn" target="com.kevin889.as_rs.technical.SQLHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.technical.XMLFilter">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.core.Order" target="com.kevin889.as_rs.core.Product">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.core.Customer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.core.Product">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.Magazijn" target="com.kevin889.as_rs.visual.TourScreen">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.algoritme.GA_TSP">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.algoritme.GA_TSP" target="com.kevin889.as_rs.core.Order">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.visual.TourPanel">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.visual.TourScreen" target="com.kevin889.as_rs.technical.XMLHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.kevin889.as_rs.algoritme.GA_BPP" target="com.kevin889.as_rs.core.Order">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6378509903158305" x="565.86376953125" y="668.9154205322266" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
