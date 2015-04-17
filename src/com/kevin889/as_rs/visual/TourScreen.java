@@ -2,21 +2,12 @@ package com.kevin889.as_rs.visual;
 
 import com.kevin889.as_rs.technical.*;
 import com.kevin889.as_rs.algoritme.GA_TSP;
-import com.kevin889.as_rs.core.Customer;
 import com.kevin889.as_rs.core.Order;
-import com.kevin889.as_rs.core.Product;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -39,8 +30,9 @@ public class TourScreen extends JFrame{
 
     private JFileChooser fc;
     private File selectedXML;
-    private XMLFile xmlFile;
+    private XMLData xmlData;
     private SQLHandler sqlh;
+    private SQLData sqlData;
 
     private Order order;
     private OrderSpecsDialog orderSpecsDialog;
@@ -99,6 +91,10 @@ public class TourScreen extends JFrame{
         return order;
     }
 
+    public OrderSpecsDialog getOrderSpecsDialog(){
+        return orderSpecsDialog;
+    }
+
     public ProductsTableModel getProductsTableModel(){
         return dtm;
     }
@@ -106,10 +102,14 @@ public class TourScreen extends JFrame{
     public void setFile(File f){
         selectedXML = f;
         try {
-            xmlFile = new XMLFile(f);
-            System.out.println(xmlFile.getOrderNr());
+            xmlData = new XMLData(f);
+            System.out.println(xmlData.getOrderNr());
 
-            order = new Order(xmlFile.getOrderNr(), xmlFile.getDate(), xmlFile.getCustomer());
+            order = new Order(xmlData.getOrderNr(), xmlData.getDate(), xmlData.getCustomer());
+            orderSpecsDialog = new OrderSpecsDialog(this, getOrder(), getProductsTableModel());
+
+            sqlData = new SQLData(this);
+            sqlData.createProducts();
 
             jbOrderSpecs.setEnabled(true);
             jbPrintOrder.setEnabled(true);
@@ -124,12 +124,24 @@ public class TourScreen extends JFrame{
         return selectedXML;
     }
 
+    public XMLData getXmlData(){
+        return xmlData;
+    }
+
     public JFileChooser getFileChooser(){
         return fc;
     }
 
     public boolean hasFileSelected(){
         return selectedXML != null;
+    }
+
+    public SQLHandler getSQLHandler(){
+        return sqlh;
+    }
+
+    public ProductsTableModel getDtm(){
+        return dtm;
     }
 
 

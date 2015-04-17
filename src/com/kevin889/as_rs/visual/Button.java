@@ -43,8 +43,7 @@ public class Button extends JButton implements ActionListener {
                 case ORDER_SPECS:
                     if(frame == null) return;
                     System.out.println("Order specs");
-                    OrderSpecsDialog orderSpecsDialog = new OrderSpecsDialog(frame, frame.getOrder(), frame.getProductsTableModel());
-                    orderSpecsDialog.setVisible(true);
+                    frame.getOrderSpecsDialog().setVisible(true);
                     break;
                 case PRINT_ORDER:
                     break;
@@ -55,6 +54,7 @@ public class Button extends JButton implements ActionListener {
                     System.out.println("STOP GA");
                     break;
                 case CLOSE:
+                    frame.getOrderSpecsDialog().setVisible(false);
                     break;
 
             }

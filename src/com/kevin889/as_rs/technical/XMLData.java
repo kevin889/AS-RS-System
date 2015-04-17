@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by kevin889 on 17-04-15.
  */
-public class XMLFile extends XMLHandler {
+public class XMLData extends XMLHandler {
 
     private int orderNr;
     private String name, surname, address, zipcode, city;
@@ -20,7 +20,7 @@ public class XMLFile extends XMLHandler {
     private String date;
     private ArrayList<Integer> productNrs = new ArrayList<Integer>();
 
-    public XMLFile(File file) throws IOException {
+    public XMLData(File file) throws IOException {
         super(file);
         init();
     }

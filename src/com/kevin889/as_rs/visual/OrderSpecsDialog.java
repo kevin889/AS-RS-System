@@ -19,7 +19,7 @@ public class OrderSpecsDialog extends JDialog implements ActionListener{
     private JTable jtProducts;
     private JButton jbClose;
 
-    public OrderSpecsDialog(Frame owner, Order order, DefaultTableModel dtm) {
+    public OrderSpecsDialog(TourScreen owner, Order order, DefaultTableModel dtm) {
         super(owner, true);
         this.order = order;
         this.dtm = dtm;
@@ -69,9 +69,8 @@ public class OrderSpecsDialog extends JDialog implements ActionListener{
         add(jsSP);
 
 
-        jbClose = new JButton("Sluiten");
-        jbClose.addActionListener(this);
-        jbClose.setBounds(10, 170, 100, 30);
+        jbClose = new Button("Sluiten", Button.ButtonType.CLOSE, new Rectangle(10, 170, 100, 30), owner);
+
         add(jbClose);
 
     }

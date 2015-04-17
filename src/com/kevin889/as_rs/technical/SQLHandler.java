@@ -53,7 +53,7 @@ public class SQLHandler {
 
     public enum DatabaseOption{ USERNAME, PASSWORD, HOST, DATABASE_NAME, PORT }
 
-    public ResultSet getData(String columns, String table, String where){
+    public ResultSet getData(String columns, String table, String where) throws SQLException{
         String sql = "SELECT " + columns + " FROM " + table + (where==null ? ";":" WHERE "+where+";");
         try{
             return getStatement().executeQuery(sql);
