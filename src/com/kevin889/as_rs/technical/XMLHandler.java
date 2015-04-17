@@ -1,5 +1,6 @@
 package com.kevin889.as_rs.technical;
 
+import com.kevin889.as_rs.core.Customer;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -56,6 +57,7 @@ public class XMLHandler {
 
 
         private String tagName;
+
         private NodeOption(String tagName){
             this.tagName = tagName;
         }

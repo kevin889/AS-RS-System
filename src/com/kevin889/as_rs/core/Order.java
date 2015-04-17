@@ -9,10 +9,12 @@ public class Order {
 
     private int orderNumber;
     private String date;
+    private Customer customer;
 
-    public Order(int orderNumber, String date){
+    public Order(int orderNumber, String date, Customer customer){
         this.orderNumber = orderNumber;
         this.date = date;
+        this.customer = customer;
         System.out.println("<"+this.date+"> Order: " + orderNumber + " created.");
     }
 

@@ -38,4 +38,9 @@ public class Customer {
     public static String getCity() {
         return city;
     }
+
+    @Override
+    public String toString() {
+        return "Customer: "+ name + ", " + surname;
+    }
 }
