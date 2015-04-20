@@ -1,5 +1,6 @@
 package com.kevin889.as_rs.visual;
 
+import com.kevin889.as_rs.algoritme.GA_TSP;
 import com.kevin889.as_rs.core.Order;
 
 import javax.swing.*;
@@ -58,7 +59,8 @@ public class TourPanel extends JPanel {
 
             //Draw Product box
             int productX = order.getProduct(i).getX() * boxWidth + (padding * 2);
-            int productY = order.getProduct(i).getY() * boxHeight + (padding * 2);
+            //int productY = order.getProduct(i).getY() * boxHeight + (padding * 2);
+            int productY = (PHEIGHT - order.getProduct(i).getY() * boxHeight) - boxHeight;
             int productWidth = boxWidth - (padding * 2);
             int productHeight = boxHeight - padding;
             g.fillRect(productX, productY, productWidth, productHeight);
@@ -68,7 +70,7 @@ public class TourPanel extends JPanel {
 
             //Draw product name
             int productNameX = order.getProduct(i).getX() * boxWidth + (padding * 3);
-            int productNameY = order.getProduct(i).getY() * boxHeight + (padding * 4);
+            int productNameY = PHEIGHT - (order.getProduct(i).getY() * boxHeight) - boxHeight + (padding * 2);
             g.drawString(order.getProduct(i).getName(), productNameX, productNameY);
 
             //Draw product size
@@ -79,7 +81,7 @@ public class TourPanel extends JPanel {
                 size = "Groot";
             }
             int sizeX = order.getProduct(i).getX() * boxWidth + (padding * 3);
-            int sizeY = order.getProduct(i).getY() * boxHeight + (padding * 3) + (lineHeight * 2);
+            int sizeY = PHEIGHT - (order.getProduct(i).getY() * boxHeight) - boxHeight + (padding * 2) + lineHeight;
             g.drawString(size, sizeX, sizeY);
         }
 
@@ -87,6 +89,7 @@ public class TourPanel extends JPanel {
 
     public void start(){
         System.out.println("START GA");
+        GA_TSP tsp = new GA_TSP(order);
     }
 
     public void stop(){
