@@ -10,6 +10,8 @@ public class Order {
     private int orderNumber;
     private String date;
     private Customer customer;
+    private ArrayList<Product> products = new ArrayList<Product>();
+
 
     public Order(int orderNumber, String date, Customer customer){
         this.orderNumber = orderNumber;
@@ -17,8 +19,6 @@ public class Order {
         this.customer = customer;
         System.out.println("<"+this.date+"> Order: " + orderNumber + " created.");
     }
-
-    private ArrayList<Product> products = new ArrayList<Product>();
 
     public void addProduct(Product product) { products.add(product); }
 

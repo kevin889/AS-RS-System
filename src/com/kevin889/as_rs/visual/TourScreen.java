@@ -1,5 +1,6 @@
 package com.kevin889.as_rs.visual;
 
+import com.kevin889.as_rs.Magazijn;
 import com.kevin889.as_rs.technical.*;
 import com.kevin889.as_rs.algoritme.GA_TSP;
 import com.kevin889.as_rs.core.Order;
@@ -72,18 +73,22 @@ public class TourScreen extends JFrame{
         add(jsSP);
 
         tpView = new TourPanel();
-        tpView.setBounds(170, 10, 620, 500);
+        tpView.setBounds(170, 10, TourPanel.PWIDTH, TourPanel.PHEIGHT);
         add(tpView);
 
-        jbPickOrder = new Button("Start", Button.ButtonType.START_GA, new Rectangle(170, 520, 250, 50));
+        jbPickOrder = new Button("Start", Button.ButtonType.START_GA, new Rectangle(170, 520, 250, 50), this);
         jbPickOrder.setEnabled(false);
         add(jbPickOrder);
 
-        jbStopPick = new Button("Stop", Button.ButtonType.STOP_GA, new Rectangle(540, 520, 250, 50));
+        jbStopPick = new Button("Stop", Button.ButtonType.STOP_GA, new Rectangle(540, 520, 250, 50), this);
         jbStopPick.setEnabled(false);
         add(jbStopPick);
 
         setVisible(true);
+
+        if(Magazijn.DEV_MODE) {
+            setFile(new File("/Users/kevin889/Desktop/testOrder.xml"));
+        }
 
     }
 
@@ -103,13 +108,14 @@ public class TourScreen extends JFrame{
         selectedXML = f;
         try {
             xmlData = new XMLData(f);
-            System.out.println(xmlData.getOrderNr());
 
             order = new Order(xmlData.getOrderNr(), xmlData.getDate(), xmlData.getCustomer());
             orderSpecsDialog = new OrderSpecsDialog(this, getOrder(), getProductsTableModel());
 
             sqlData = new SQLData(this);
             sqlData.createProducts();
+
+            tpView.init(getOrder());
 
             jbOrderSpecs.setEnabled(true);
             jbPrintOrder.setEnabled(true);
@@ -142,6 +148,10 @@ public class TourScreen extends JFrame{
 
     public ProductsTableModel getDtm(){
         return dtm;
+    }
+
+    public TourPanel getTourPanel(){
+        return tpView;
     }
 
 

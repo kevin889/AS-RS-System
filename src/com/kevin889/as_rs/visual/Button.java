@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class Button extends JButton implements ActionListener {
 
     private ButtonType type;
-    private TourScreen frame;
+    private TourScreen frame = null;
 
     public Button(String title, ButtonType type, Rectangle bounds){
         setText(title);
@@ -37,6 +37,7 @@ public class Button extends JButton implements ActionListener {
 
                     int returnVal = frame.getFileChooser().showOpenDialog(frame);
                     if(returnVal == JFileChooser.APPROVE_OPTION){
+                        System.out.println(frame.getFileChooser().getSelectedFile().getAbsolutePath());
                         frame.setFile(frame.getFileChooser().getSelectedFile());
                     }
                     break;
@@ -48,10 +49,12 @@ public class Button extends JButton implements ActionListener {
                 case PRINT_ORDER:
                     break;
                 case START_GA:
-                    System.out.println("START GA");
+                    if(frame == null) return;
+                    frame.getTourPanel().start();
                     break;
                 case STOP_GA:
-                    System.out.println("STOP GA");
+                    if(frame == null) return;
+                    frame.getTourPanel().stop();
                     break;
                 case CLOSE:
                     frame.getOrderSpecsDialog().setVisible(false);

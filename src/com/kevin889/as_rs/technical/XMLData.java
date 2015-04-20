@@ -34,7 +34,6 @@ public class XMLData extends XMLHandler {
 
     private void initOrderNr(){
         NodeList list = super.getNodeList(NodeOption.ORDERNR);
-        System.out.println(list);
         Node node = list.item(0);
         if(node.getNodeType() == Node.ELEMENT_NODE){
             Element element = (Element) node;

@@ -10,6 +10,8 @@ import java.sql.SQLException;
  */
 public class Magazijn {
 
+    public static boolean DEV_MODE = true;
+
     public static void main(String[] args){
         try {
             SQLHandler sqlh = new SQLHandler("root", "root", "asrs", 3306, "localhost");
