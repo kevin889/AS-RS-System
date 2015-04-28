@@ -2,6 +2,7 @@ package com.kevin889.as_rs.technical;
 
 import com.kevin889.as_rs.core.Product;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -12,13 +13,11 @@ public class Way  implements Comparable<Way>{
     private Product from;
     private Product to;
     private double distance;
-    private int connects;
 
     public Way(Product from, Product to) {
         this.from = from;
         this.to = to;
         this.distance = from.getDistance(to);
-        this.connects = 0;
     }
 
     public Product getFrom() {
@@ -33,18 +32,19 @@ public class Way  implements Comparable<Way>{
         return distance;
     }
 
-    public int getConnects() {
-        return connects;
+    public void connect(){
+        from.connect();;
+        to.connect();
+    }
+
+    public void disconnect(){
+        from.disconnect();
+        to.disconnect();
     }
 
     @Override
     public String toString() {
-        return "Way{" +
-                "from=" + from +
-                ", to=" + to +
-                ", distance=" + distance +
-                ", connects=" + connects +
-                "}\n";
+        return "van " + from.getName() + "("+from.getConnections()+") naar: " + to.getName()+"("+to.getConnections()+") ["+distance+"]\n";
     }
 
     public static Comparator<Way> wayComparator = new Comparator<Way>() {

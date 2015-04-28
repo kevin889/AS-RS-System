@@ -7,6 +7,8 @@ public class Product {
 
     private String name;
     private int x, y ,size;
+    private int connects;
+    private boolean visited;
 
     public Product(){
         this(null, 0, 0, 0);
@@ -17,6 +19,8 @@ public class Product {
         this.x = x;
         this.y = y;
         this.size = size;
+        this.connects = 0;
+        this.visited = false;
     }
 
     public int getX() {
@@ -30,6 +34,22 @@ public class Product {
     public String getName() { return name; }
 
     public int getSize() { return size;}
+
+    public void disconnect(){
+        this.connects--;
+    }
+
+    public void connect(){
+        this.connects++;
+    }
+
+    public int getConnections(){
+        return this.connects;
+    }
+
+    public void resetConnection(){
+        this.connects = 0;
+    }
 
     public double getDistance(Product city){
         int xDist = Math.abs(getX() - city.getX());

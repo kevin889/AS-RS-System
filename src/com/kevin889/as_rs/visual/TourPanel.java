@@ -1,10 +1,13 @@
 package com.kevin889.as_rs.visual;
 
+import com.kevin889.as_rs.Magazijn;
 import com.kevin889.as_rs.algoritme.GA_TSP;
 import com.kevin889.as_rs.core.Order;
+import com.kevin889.as_rs.technical.Way;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by kevin889 on 16-04-15.
@@ -25,6 +28,8 @@ public class TourPanel extends JPanel {
     private int padding = 10;
     private int lineHeight = 12;
 
+    private ArrayList<Way> route = new ArrayList<Way>();
+
     public TourPanel(){
         setBackground(Color.BLACK);
         boxWidth = (PWIDTH - (2 * padding)) / xBox;
@@ -34,6 +39,9 @@ public class TourPanel extends JPanel {
     public void init(Order order){
         this.order = order;
         super.repaint();
+
+        if(Magazijn.DEV_MODE) start();
+
     }
 
     public void paintComponent(Graphics g){
@@ -83,17 +91,32 @@ public class TourPanel extends JPanel {
             int sizeX = order.getProduct(i).getX() * boxWidth + (padding * 3);
             int sizeY = PHEIGHT - (order.getProduct(i).getY() * boxHeight) - boxHeight + (padding * 2) + lineHeight;
             g.drawString(size, sizeX, sizeY);
+
+            if(route == null) return;
+            g.setColor(Color.RED);
+            for(int c = 0; c < route.size(); c++){
+                int x1 = (route.get(c).getFrom().getX() * boxWidth) + (padding) + (boxWidth / 2);
+                int y1 = PHEIGHT - (route.get(c).getFrom().getY() * boxHeight) - (boxHeight / 2);
+                int x2 = (route.get(c).getTo().getX() * boxWidth) + (padding ) + (boxWidth / 2);
+                int y2 = PHEIGHT - (route.get(c).getTo().getY() * boxHeight) - (boxHeight / 2);
+                g.drawLine(x1, y1, x2, y2);
+            }
+
         }
 
     }
 
     public void start(){
-        System.out.println("START GA");
-        GA_TSP tsp = new GA_TSP(order);
+        GA_TSP tsp = new GA_TSP(order, this);
     }
 
     public void stop(){
 
+    }
+
+    public void setRoute(ArrayList<Way> route){
+        this.route = route;
+        super.repaint();
     }
 
 }
