@@ -1,4 +1,4 @@
-package com.kevin889.as_rs.core;
+package com.wkj03.as_rs.core;
 
 /**
  * Created by kevin889 on 16-04-15.

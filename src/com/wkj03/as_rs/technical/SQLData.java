@@ -1,9 +1,8 @@
-package com.kevin889.as_rs.technical;
+package com.wkj03.as_rs.technical;
 
-import com.kevin889.as_rs.core.Order;
-import com.kevin889.as_rs.core.Product;
-import com.kevin889.as_rs.visual.TourScreen;
-import sun.java2d.pipe.TextPipe;
+import com.wkj03.as_rs.core.Order;
+import com.wkj03.as_rs.core.Product;
+import com.wkj03.as_rs.visual.TourScreen;
 
 import javax.swing.*;
 import java.sql.ResultSet;

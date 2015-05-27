@@ -1,4 +1,4 @@
-package com.kevin889.as_rs.technical;
+package com.wkj03.as_rs.technical;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

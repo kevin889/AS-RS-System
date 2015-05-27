@@ -1,6 +1,5 @@
-package com.kevin889.as_rs.technical;
+package com.wkj03.as_rs.technical;
 
-import com.kevin889.as_rs.core.Customer;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 

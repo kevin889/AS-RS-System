@@ -1,8 +1,7 @@
-package com.kevin889.as_rs;
+package com.wkj03.as_rs;
 
-import com.kevin889.as_rs.technical.ArduConnect;
-import com.kevin889.as_rs.technical.SQLHandler;
-import com.kevin889.as_rs.visual.TourScreen;
+import com.wkj03.as_rs.technical.SQLHandler;
+import com.wkj03.as_rs.visual.TourScreen;
 
 import java.sql.SQLException;
 
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 public class Magazijn {
 
     //DEV_MODE laadt automatisch een xml bestand en start vervolgens de algoritmes
-    public static boolean DEV_MODE = true;
+    public static boolean DEV_MODE = false;
 
     public static void main(String[] args) throws Exception{
         try {

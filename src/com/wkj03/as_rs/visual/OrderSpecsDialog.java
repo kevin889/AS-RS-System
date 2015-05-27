@@ -1,7 +1,7 @@
-package com.kevin889.as_rs.visual;
+package com.wkj03.as_rs.visual;
 
-import com.kevin889.as_rs.core.Customer;
-import com.kevin889.as_rs.core.Order;
+import com.wkj03.as_rs.core.Customer;
+import com.wkj03.as_rs.core.Order;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -76,7 +76,7 @@ public class OrderSpecsDialog extends JDialog implements ActionListener{
         add(jsSP);
 
 
-        jbClose = new Button("Sluiten", Button.ButtonType.CLOSE, new Rectangle(10, 170, 100, 30), owner);
+        jbClose = new com.wkj03.as_rs.visual.Button("Sluiten", com.wkj03.as_rs.visual.Button.ButtonType.CLOSE, new Rectangle(10, 170, 100, 30), owner);
 
         add(jbClose);
 

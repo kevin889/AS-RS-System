@@ -1,22 +1,24 @@
-package com.kevin889.as_rs.visual;
+package com.wkj03.as_rs.visual;
 
-import com.kevin889.as_rs.Magazijn;
-import com.kevin889.as_rs.core.Bin;
-import com.kevin889.as_rs.technical.*;
-import com.kevin889.as_rs.algoritme.GA_TSP;
-import com.kevin889.as_rs.core.Order;
+import com.wkj03.as_rs.Magazijn;
+import com.wkj03.as_rs.algoritme.GA_TSP;
+import com.wkj03.as_rs.core.Order;
+import com.wkj03.as_rs.technical.*;
+import gnu.io.CommPortIdentifier;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 /**
  * Created by kevin889 on 16-04-15.
  */
-public class TourScreen extends JFrame{
+public class TourScreen extends JFrame implements ActionListener{
 
     private GA_TSP gaTSP;
 
@@ -28,6 +30,7 @@ public class TourScreen extends JFrame{
     private JButton jbStopPick;
     private JTable jtProducts;
     private JLabel jlStatus;
+    private JComboBox jcbSerialPort;
 
     private ProductsTableModel dtm;
     private TourPanel tpView;
@@ -37,10 +40,10 @@ public class TourScreen extends JFrame{
     private XMLData xmlData;
     private SQLHandler sqlh;
     private SQLData sqlData;
+    private String serialPort;
 
     private Order order;
     private OrderSpecsDialog orderSpecsDialog;
-    private ArrayList<Bin> bins;
 
     /**
      *
@@ -64,15 +67,15 @@ public class TourScreen extends JFrame{
         fc.addChoosableFileFilter(new XMLFilter());
         fc.setAcceptAllFileFilterUsed(false);
 
-        jbXmlSelect = new Button("Selecteer XML", Button.ButtonType.SELECT_XML, new Rectangle(10, 10, 150, 50), this);
+        jbXmlSelect = new com.wkj03.as_rs.visual.Button("Selecteer XML", com.wkj03.as_rs.visual.Button.ButtonType.SELECT_XML, new Rectangle(10, 10, 150, 50), this);
 
         add(jbXmlSelect);
 
-        jbOrderSpecs = new Button("Order gegevens", Button.ButtonType.ORDER_SPECS, new Rectangle(10, 65, 150, 50), this);
+        jbOrderSpecs = new com.wkj03.as_rs.visual.Button("Order gegevens", com.wkj03.as_rs.visual.Button.ButtonType.ORDER_SPECS, new Rectangle(10, 65, 150, 50), this);
         jbOrderSpecs.setEnabled(false);
         add(jbOrderSpecs);
 
-        jbPrintOrder = new Button("Print pakbon", Button.ButtonType.PRINT_ORDER, new Rectangle(10, 125, 150, 50), this);
+        jbPrintOrder = new com.wkj03.as_rs.visual.Button("Print pakbon", com.wkj03.as_rs.visual.Button.ButtonType.PRINT_ORDER, new Rectangle(10, 125, 150, 50), this);
         jbPrintOrder.setEnabled(false);
         add(jbPrintOrder);
 
@@ -85,15 +88,31 @@ public class TourScreen extends JFrame{
         jsSP.setBounds(10, 180, 150, 200);
         add(jsSP);
 
+        ArrayList<String> serialList = new ArrayList<String>();
+        Enumeration portList = CommPortIdentifier.getPortIdentifiers();
+        while(portList.hasMoreElements()){
+            CommPortIdentifier portId = (CommPortIdentifier) portList.nextElement();
+            serialList.add(portId.getName());
+        }
+
+        String[] arr = serialList.toArray(new String[serialList.size()]);
+
+        jcbSerialPort = new JComboBox(arr);
+        jcbSerialPort.setBounds(10, 390, 150, 30);
+        jcbSerialPort.addActionListener(this);
+        serialPort = (String) jcbSerialPort.getSelectedItem();
+        add(jcbSerialPort);
+
         tpView = new TourPanel();
+        tpView.setSerialPort(serialPort);
         tpView.setBounds(170, 10, TourPanel.PWIDTH, TourPanel.PHEIGHT);
         add(tpView);
 
-        jbPickOrder = new Button("Start", Button.ButtonType.START_GA, new Rectangle(170, 520, 250, 50), this);
+        jbPickOrder = new com.wkj03.as_rs.visual.Button("Start", com.wkj03.as_rs.visual.Button.ButtonType.START_GA, new Rectangle(170, 520, 250, 50), this);
         jbPickOrder.setEnabled(false);
         add(jbPickOrder);
 
-        jbStopPick = new Button("Stop", Button.ButtonType.STOP_GA, new Rectangle(540, 520, 250, 50), this);
+        jbStopPick = new com.wkj03.as_rs.visual.Button("Stop", com.wkj03.as_rs.visual.Button.ButtonType.STOP_GA, new Rectangle(540, 520, 250, 50), this);
         jbStopPick.setEnabled(false);
         //add(jbStopPick);
 
@@ -212,4 +231,16 @@ public class TourScreen extends JFrame{
         }
     }
 
+    public String getSerialPort(){
+        return serialPort;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jcbSerialPort){
+            System.out.println(jcbSerialPort.getSelectedItem());
+            serialPort = (String) jcbSerialPort.getSelectedItem();
+            tpView.setSerialPort(serialPort);
+        }
+    }
 }

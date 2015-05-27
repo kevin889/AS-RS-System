@@ -1,11 +1,10 @@
-package com.kevin889.as_rs.algoritme;
+package com.wkj03.as_rs.algoritme;
 
-import com.kevin889.as_rs.core.Order;
-import com.kevin889.as_rs.core.Product;
-import com.kevin889.as_rs.visual.TourPanel;
+import com.wkj03.as_rs.core.Order;
+import com.wkj03.as_rs.core.Product;
+import com.wkj03.as_rs.visual.TourPanel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**

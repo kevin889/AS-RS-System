@@ -1,6 +1,4 @@
-package com.kevin889.as_rs.visual;
-
-import javafx.geometry.Bounds;
+package com.wkj03.as_rs.visual;
 
 import javax.swing.*;
 import java.awt.*;

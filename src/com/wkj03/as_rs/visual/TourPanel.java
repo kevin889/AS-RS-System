@@ -1,17 +1,15 @@
-package com.kevin889.as_rs.visual;
+package com.wkj03.as_rs.visual;
 
-import com.kevin889.as_rs.Magazijn;
-import com.kevin889.as_rs.algoritme.GA_BPP;
-import com.kevin889.as_rs.algoritme.GA_TSP;
-import com.kevin889.as_rs.core.Bin;
-import com.kevin889.as_rs.core.Order;
-import com.kevin889.as_rs.core.Product;
-import com.kevin889.as_rs.technical.ArduConnect;
+import com.wkj03.as_rs.Magazijn;
+import com.wkj03.as_rs.algoritme.GA_BPP;
+import com.wkj03.as_rs.algoritme.GA_TSP;
+import com.wkj03.as_rs.core.Order;
+import com.wkj03.as_rs.core.Product;
+import com.wkj03.as_rs.technical.ArduConnect;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by kevin889 on 16-04-15.
@@ -36,6 +34,7 @@ public class TourPanel extends JPanel {
     private GA_BPP bpp;
 
     private ArrayList<Product> route = new ArrayList<Product>();
+    private String serialPort;
 
     /**
      * Maakt een teken panel aan, en berekent de dimensies aan de hand van de hoeveelheid vakken
@@ -146,7 +145,7 @@ public class TourPanel extends JPanel {
         }
 
         //Maakt een arduino connectie aan
-        ArduConnect connection = new ArduConnect();
+        ArduConnect connection = new ArduConnect(this.serialPort);
         if(connection.initialize()){
             //Verstuurt data naar arduino
             connection.sendData(total);
@@ -176,6 +175,10 @@ public class TourPanel extends JPanel {
     public void setRoute(ArrayList<Product> p){
         this.route = p;
         super.repaint();
+    }
+
+    public void setSerialPort(String port){
+        this.serialPort = port;
     }
 
 

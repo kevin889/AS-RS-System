@@ -1,4 +1,4 @@
-package com.kevin889.as_rs.technical;
+package com.wkj03.as_rs.technical;
 
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
@@ -25,10 +25,12 @@ import java.util.Enumeration;
         private String appName;
         private BufferedReader input;
         private OutputStream output;
+        private String chosenSerialPort;
 
-        public ArduConnect()
+        public ArduConnect(String serialPort)
         {
             appName = getClass().getName();
+            this.chosenSerialPort = serialPort;
         }
 
         public boolean initialize()
@@ -41,17 +43,19 @@ import java.util.Enumeration;
                 while (portId == null && portEnum.hasMoreElements())
                 {
                     CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
-                    for (String portName : PORT_NAMES)
-                    {
-                        if (currPortId.getName().equals(portName)
-                                || currPortId.getName().startsWith(portName))
+
+                    //for (String portName : PORT_NAMES)
+                    //{
+
+                        if (currPortId.getName().equals(chosenSerialPort)
+                                || currPortId.getName().startsWith(chosenSerialPort))
                         {
 
                             serialPort = (SerialPort) currPortId.open(appName, TIME_OUT);
                             portId = currPortId;
                             break;
                         }
-                    }
+                    //}
                 }
 
                 if (portId == null || serialPort == null)
