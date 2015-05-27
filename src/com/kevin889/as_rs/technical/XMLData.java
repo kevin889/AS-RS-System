@@ -20,11 +20,19 @@ public class XMLData extends XMLHandler {
     private String date;
     private ArrayList<Integer> productNrs = new ArrayList<Integer>();
 
+    /**
+     * Parse een xml
+     * @param file
+     * @throws IOException
+     */
     public XMLData(File file) throws IOException {
         super(file);
         init();
     }
 
+    /**
+     * Alle xml tags worden geinitialiseerd
+     */
     private void init(){
         initOrderNr();
         initCustomer();

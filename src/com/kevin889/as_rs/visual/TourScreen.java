@@ -1,6 +1,7 @@
 package com.kevin889.as_rs.visual;
 
 import com.kevin889.as_rs.Magazijn;
+import com.kevin889.as_rs.core.Bin;
 import com.kevin889.as_rs.technical.*;
 import com.kevin889.as_rs.algoritme.GA_TSP;
 import com.kevin889.as_rs.core.Order;
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by kevin889 on 16-04-15.
@@ -18,6 +20,7 @@ public class TourScreen extends JFrame{
 
     private GA_TSP gaTSP;
 
+    //initialiseer objecten
     private JButton jbXmlSelect;
     private JButton jbOrderSpecs;
     private JButton jbPrintOrder;
@@ -37,8 +40,18 @@ public class TourScreen extends JFrame{
 
     private Order order;
     private OrderSpecsDialog orderSpecsDialog;
+    private ArrayList<Bin> bins;
 
+    /**
+     *
+     * Maakt het frame aan en plaatst de interface objecten in het frame.
+     *
+     * @param sqlh
+     */
     public TourScreen(SQLHandler sqlh) {
+
+        //Maak frame aan en plaats alle objecten
+
         setTitle("Magazijn robot Controle Systeem");
         setSize(800, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -59,7 +72,7 @@ public class TourScreen extends JFrame{
         jbOrderSpecs.setEnabled(false);
         add(jbOrderSpecs);
 
-        jbPrintOrder = new Button("Print pakbon", Button.ButtonType.PRINT_ORDER, new Rectangle(10, 125, 150, 50));
+        jbPrintOrder = new Button("Print pakbon", Button.ButtonType.PRINT_ORDER, new Rectangle(10, 125, 150, 50), this);
         jbPrintOrder.setEnabled(false);
         add(jbPrintOrder);
 
@@ -82,7 +95,7 @@ public class TourScreen extends JFrame{
 
         jbStopPick = new Button("Stop", Button.ButtonType.STOP_GA, new Rectangle(540, 520, 250, 50), this);
         jbStopPick.setEnabled(false);
-        add(jbStopPick);
+        //add(jbStopPick);
 
         setVisible(true);
 
@@ -92,19 +105,35 @@ public class TourScreen extends JFrame{
 
     }
 
+    /**
+     * Geeft de huidige order
+     * @return
+     */
     public Order getOrder(){
         return order;
     }
 
+    /**
+     * Geeft de "Order gegevens" class
+     * @return
+     */
     public OrderSpecsDialog getOrderSpecsDialog(){
         return orderSpecsDialog;
     }
 
+    /**
+     * Technische informatie over de tabel met producten
+     * @return
+     */
     public ProductsTableModel getProductsTableModel(){
         return dtm;
     }
 
-    public void setFile(File f){
+    /**
+     * Laad het xml bestand in de applicatie en verwerkt de inhoud
+     * @param f
+     */
+    public void setFile(File f) {
         selectedXML = f;
         try {
             xmlData = new XMLData(f);
@@ -117,6 +146,7 @@ public class TourScreen extends JFrame{
 
             tpView.init(getOrder());
 
+            //Zet de buttons in het frame op enabled.
             jbOrderSpecs.setEnabled(true);
             jbPrintOrder.setEnabled(true);
             jbPickOrder.setEnabled(true);
@@ -126,33 +156,60 @@ public class TourScreen extends JFrame{
         }
     }
 
-    public File getSelectedXML(){
-        return selectedXML;
-    }
-
+    /**
+     * Krijg de xml data
+     * @return
+     */
     public XMLData getXmlData(){
         return xmlData;
     }
 
+    /**
+     * Krijg het bestand kies venster
+     * @return
+     */
     public JFileChooser getFileChooser(){
         return fc;
     }
 
-    public boolean hasFileSelected(){
-        return selectedXML != null;
-    }
-
+    /**
+     * Krijg de sql handler
+     * @return
+     */
     public SQLHandler getSQLHandler(){
         return sqlh;
     }
 
+    /**
+     * Technische informatie over de tabel
+     * @return
+     */
     public ProductsTableModel getDtm(){
         return dtm;
     }
 
+    /**
+     * Krijg het tourpanel
+     * @return
+     */
     public TourPanel getTourPanel(){
         return tpView;
     }
 
+    /**
+     * Genereer en print de pakbon
+     */
+    public void printOrder(){
+        System.out.println(order.getBins());
+        for(int i = 0; i < order.getBins().size(); i++){
+            System.out.println("####################### PAKLIJST " + (i + 1) + "/"+ order.getBins().size() +" ##################");
+            System.out.println("Aan: "+order.getCustomer().getName()+" " + order.getCustomer().getSurname() + ", " + order.getCustomer().getAddress() + ", " + order.getCustomer().getZipcode() + " " + order.getCustomer().getCity());
+            System.out.println("\nInhoud doos:");
+            for(int b = 0; b < order.getBins().get(i).getPakketten().size(); b++){
+                System.out.println((b + 1) + ". " + order.getBins().get(i).getProduct(b).getName());
+            }
+            System.out.println("\n");
+        }
+    }
 
 }

@@ -11,7 +11,7 @@ public class Order {
     private String date;
     private Customer customer;
     private ArrayList<Product> products = new ArrayList<Product>();
-
+    private ArrayList<Bin> bins = new ArrayList<Bin>();
 
     public Order(int orderNumber, String date, Customer customer){
         this.orderNumber = orderNumber;
@@ -28,9 +28,20 @@ public class Order {
 
     public String getDate() { return date; }
 
+    public Customer getCustomer(){
+        return customer;
+    }
+
     public int numberOfProducts() { return products.size(); }
 
     public ArrayList getTour(){ return products; }
 
+    public void setBins(ArrayList<Bin> bins){
+        this.bins = bins;
+    }
+
+    public ArrayList<Bin> getBins(){
+        return bins;
+    }
 
 }

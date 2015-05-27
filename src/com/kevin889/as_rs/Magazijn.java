@@ -11,30 +11,20 @@ import java.sql.SQLException;
  */
 public class Magazijn {
 
-    public static boolean DEV_MODE = false;
+    //DEV_MODE laadt automatisch een xml bestand en start vervolgens de algoritmes
+    public static boolean DEV_MODE = true;
 
     public static void main(String[] args) throws Exception{
-        /*try {
+        try {
+            //Connect met de mysql server
             SQLHandler sqlh = new SQLHandler("root", "root", "asrs", 3306, "localhost");
+            //Start de applicatie
             new TourScreen(sqlh);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }*/
-
-        ArduConnect connection = new ArduConnect();
-        if(connection.initialize()){
-            connection.sendData("g");
         }
-        connection.close();
-
-        try{
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ie){
-        }
-
     }
 
 }

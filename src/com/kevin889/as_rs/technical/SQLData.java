@@ -29,6 +29,10 @@ public class SQLData {
         this.dtm = ts.getDtm();
     }
 
+    /**
+     * Hier worden de product id's uit het xml bestand gekoppeld aan een product met het zelfde id uit de database.
+     * Deze producten worden dan als klasses aangemaakt
+     */
     public void createProducts(){
         for(int i = 0; i < xmld.getProductNrs().size(); i++){
             int count = 0;

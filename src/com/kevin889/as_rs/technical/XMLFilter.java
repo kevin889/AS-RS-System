@@ -8,6 +8,11 @@ import javax.swing.filechooser.*;
  * Created by kevin889 on 16-04-15.
  */
 public class XMLFilter extends FileFilter {
+
+    /**
+     * Deze class zorgt er voor dat alleen XML bestanden geselcteerd kunnen worden in de fileChooser
+     */
+
     public boolean accept(File f) {
         if (f.isDirectory()) {
             return true;

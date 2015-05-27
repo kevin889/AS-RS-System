@@ -15,6 +15,12 @@ public class Button extends JButton implements ActionListener {
     private ButtonType type;
     private TourScreen frame = null;
 
+    /**
+     * Genereert een button met ingebouwde ActionListener
+     * @param title
+     * @param type
+     * @param bounds
+     */
     public Button(String title, ButtonType type, Rectangle bounds){
         setText(title);
         this.type = type;
@@ -28,6 +34,10 @@ public class Button extends JButton implements ActionListener {
 
     }
 
+    /**
+     * Activeer de juiste actie bij een klik op een button
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof JButton){
@@ -47,6 +57,7 @@ public class Button extends JButton implements ActionListener {
                     frame.getOrderSpecsDialog().setVisible(true);
                     break;
                 case PRINT_ORDER:
+                    frame.printOrder();
                     break;
                 case START_GA:
                     if(frame == null) return;

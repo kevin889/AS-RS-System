@@ -17,14 +17,27 @@ public class XMLHandler {
     private File file;
     private Document doc = null;
 
+    /**
+     * Laad de content die in een xml bestand staat
+     * @param file
+     * @throws IOException
+     */
     public XMLHandler(File file) throws IOException{
         this.file = file;
     }
 
+    /**
+     * Geeft het huidig geladen bestand
+     * @return
+     */
     public File getFile(){
         return file;
     }
 
+    /**
+     * Geeft het huidig geladen document
+     * @return
+     */
     public Document getDocument(){
         if(doc == null){
             initDoc();
@@ -34,6 +47,9 @@ public class XMLHandler {
 
     }
 
+    /**
+     * XML Structuur wordt omgezet naar te lezen objecten.
+     */
     public void initDoc(){
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -45,10 +61,18 @@ public class XMLHandler {
         }
     }
 
+    /**
+     * Geeft een lijst met de hele inhoud van het xml bestand
+     * @param option
+     * @return
+     */
     public NodeList getNodeList(NodeOption option){
         return getDocument().getElementsByTagName(option.toString());
     }
 
+    /**
+     * Keuzes uit de verschillende xml tags
+     */
     public enum NodeOption{
         ORDERNR("ordernummer"),
         KLANT("klant"),

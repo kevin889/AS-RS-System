@@ -24,27 +24,26 @@ public class GA_TSP{
         this.order = order;
         this.tp = tp;
 
+        //De producten uit de order wordt gecopieerd naar een nieuwe arraylist
         ArrayList<Product> tour = new ArrayList<Product>();
-//        ArrayList<Double> distsArr = new ArrayList<Double>();
         for(int i = 0; i < this.order.numberOfProducts(); i++){
             tour.add(order.getProduct(i));
-//             .add(order.getProduct(i).getDistance(0,0));
         }
-//        int startIndex = distsArr.indexOf(Collections.max(distsArr));
-//        finalRoute.add(order.getProduct(startIndex));
-//        tour.remove(startIndex);
 
+        //Laad alle producten
         for(int i = 0; i < this.order.numberOfProducts(); i++){
             if(i == 0){
+                //Set het begin van de route
                 finalRoute.add(order.getProduct(0));
                 tour.remove(0);
             } else {
                 ArrayList<Double> tempArr = new ArrayList<Double>();
+                //Kijkt welke van de overgebleven producten het dichtst bij het huidige product ligt.
                 for(int b = 0; b < tour.size(); b++){
                     tempArr.add(finalRoute.get(i - 1).getDistance(tour.get(b)));
                 }
                 int minIndex = tempArr.indexOf(Collections.min(tempArr));
-                System.out.println("Min:"+minIndex);
+                //System.out.println("Min:"+minIndex);
                 finalRoute.add(tour.get(minIndex));
                 tour.remove(minIndex);
             }
@@ -52,19 +51,12 @@ public class GA_TSP{
         this.tp.setRoute(finalRoute);
     }
 
-    static ArrayList permute(ArrayList<Product> arr, int k){
-        ArrayList<ArrayList> a = new ArrayList();
-        for(int i = k; i < arr.size(); i++){
-            if (k == arr.size() -1){
-                System.out.println(Arrays.toString(arr.toArray()));
-            }
-
-            Collections.swap(arr, i, k);
-            permute(arr, k+1);
-            Collections.swap(arr, k, i);
-            a.add(arr);
-        }
-        return a;
+    /**
+     * Geeft de uiteindelijke route in een arraylist
+     * @return
+     */
+    public ArrayList<Product> getFinalRoute(){
+        return finalRoute;
     }
 
 }

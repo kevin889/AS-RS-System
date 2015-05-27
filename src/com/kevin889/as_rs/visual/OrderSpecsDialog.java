@@ -19,6 +19,13 @@ public class OrderSpecsDialog extends JDialog implements ActionListener{
     private JTable jtProducts;
     private JButton jbClose;
 
+    /**
+     * Maakt het dialoog "Order gegevens" aan, en plaatst de interface objecten.
+     *
+     * @param owner
+     * @param order
+     * @param dtm
+     */
     public OrderSpecsDialog(TourScreen owner, Order order, DefaultTableModel dtm) {
         super(owner, true);
         this.order = order;

@@ -1,13 +1,17 @@
 package com.kevin889.as_rs.visual;
 
 import com.kevin889.as_rs.Magazijn;
+import com.kevin889.as_rs.algoritme.GA_BPP;
 import com.kevin889.as_rs.algoritme.GA_TSP;
+import com.kevin889.as_rs.core.Bin;
 import com.kevin889.as_rs.core.Order;
 import com.kevin889.as_rs.core.Product;
+import com.kevin889.as_rs.technical.ArduConnect;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by kevin889 on 16-04-15.
@@ -28,14 +32,24 @@ public class TourPanel extends JPanel {
     private int padding = 10;
     private int lineHeight = 12;
 
+    private GA_TSP tsp;
+    private GA_BPP bpp;
+
     private ArrayList<Product> route = new ArrayList<Product>();
 
+    /**
+     * Maakt een teken panel aan, en berekent de dimensies aan de hand van de hoeveelheid vakken
+     */
     public TourPanel(){
         setBackground(Color.BLACK);
         boxWidth = (PWIDTH - (2 * padding)) / xBox;
         boxHeight = (PHEIGHT - (2 * padding)) / yBox;
     }
 
+    /**
+     * Laad de order en repaint het panel bij het selecteren van een XML bestand
+     * @param order
+     */
     public void init(Order order){
         this.order = order;
         super.repaint();
@@ -44,6 +58,10 @@ public class TourPanel extends JPanel {
 
     }
 
+    /**
+     * tekent het magazijn, de inhoud en de route.
+     * @param g
+     */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
@@ -109,17 +127,56 @@ public class TourPanel extends JPanel {
 
     }
 
+    /**
+     * Start de algoritmes
+     */
     public void start(){
-        GA_TSP tsp = new GA_TSP(order, this);
+
+        //Start TSP
+        tsp = new GA_TSP(order, this);
+
+        //Start BPP
+        bpp = new GA_BPP(order, tsp.getFinalRoute());
+
+        String total = "";
+
+        //Genereert data om naar de arduino te sturen
+        for(int i = 0; i < tsp.getFinalRoute().size(); i++){
+            total += (tsp.getFinalRoute().get(i).getX()) + "," + (tsp.getFinalRoute().get(i).getY()) + "," + bpp.getPosition().get(i) + ";";
+        }
+
+        //Maakt een arduino connectie aan
+        ArduConnect connection = new ArduConnect();
+        if(connection.initialize()){
+            //Verstuurt data naar arduino
+            connection.sendData(total);
+        }
+        connection.close();
+
+        try{
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ie){
+        }
+
+        System.out.println(total);
     }
 
+    /**
+     * Stopt de algoritmes
+     */
     public void stop(){
 
     }
 
+    /**
+     * De route wordt toegevoegd aan het tekenpanel
+     * @param p
+     */
     public void setRoute(ArrayList<Product> p){
         this.route = p;
         super.repaint();
     }
+
 
 }
