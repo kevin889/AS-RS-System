@@ -3,6 +3,7 @@ package com.wkj03.as_rs;
 import com.wkj03.as_rs.technical.SQLHandler;
 import com.wkj03.as_rs.visual.TourScreen;
 
+import javax.swing.*;
 import java.sql.SQLException;
 
 /**
@@ -20,6 +21,11 @@ public class Magazijn {
             //Start de applicatie
             new TourScreen(sqlh);
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Er kon geen verbinding worden gemaakt met de MySQL Server. \nNeem contact op met uw systeem beheerder.",
+                    "Whoeps...",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
